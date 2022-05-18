@@ -39,7 +39,8 @@ internal class Dice : IRollable
     // Fair 6 sided dice
     public Dice(int count)
     {
-        _dice = Enumerable.Repeat(new Die(), count).ToList();
+        for(int i = 0; i < count; i++)
+            _dice.Add(new Die());
     }
     
     public void Roll(List<bool> shouldRoll)

@@ -10,7 +10,11 @@ internal class Program
             new List<int>() { 0, 0, 3, 6, 12},
             50
         );
-        
         game.AddBonusRollRule(2, 2);
+
+        while(!game.Done)
+            game.PlayTurn();
+
+        Console.ReadKey();
     }
 }

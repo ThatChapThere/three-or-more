@@ -29,9 +29,17 @@ class UserInterface
 
     public static void printDice(List<int> diceValues)
     {
+        ConsoleColor oldColour = Console.ForegroundColor;
+
         Console.Write("The following values on the dice were rolled: ");
-        diceValues.ForEach(v => Console.Write($"{v} "));
+        foreach(int diceValue in diceValues)
+        {
+            Console.ForegroundColor = (ConsoleColor) ((diceValue % 15) + 1); // everything but black
+            Console.Write($"{diceValue} ");
+        }
         Console.WriteLine();
+
+        Console.ForegroundColor = oldColour;
     }
 
     public static bool getYesOrNo()
@@ -39,6 +47,8 @@ class UserInterface
         while(true)
         {
             var userInput = Console.ReadLine()?? "";
+            
+            if(userInput.Length == 0) continue; // This prevents a index out of bounds error from occuring below
             switch(userInput.ToUpper()[0])
             {
                 case 'N':
@@ -56,5 +66,53 @@ class UserInterface
     {
         Console.Write("Would you like to re-roll? ");
         return getYesOrNo();
+    }
+
+    public static void NotifyTurn(Player player)
+    {
+        Console.WriteLine($"\n{player.Name} - it's your turn to roll");
+    }
+
+    public static void RollDice()
+    {
+        Console.Write("Press any key to roll");
+        Console.ReadKey();
+        Console.WriteLine();
+    }
+
+    public static void DisplayScores(List<Player> players)
+    {
+        Console.Write("\n\nThe scores are as follows: ");
+        players.ForEach(
+            p => Console.Write($"{p.Name}: {p.Score} ")
+        );
+        Console.WriteLine();
+    }
+
+    public static string getPlayerName(int playerNumber)
+    {
+        Console.Write($"Please enter the name for Player {playerNumber}: ");
+        while(true)
+        {
+            try{
+                string name = Console.ReadLine() ?? "";
+                if(name == "")
+                    throw new PlayerUnnamedException();
+                return name;
+            }catch(IOException){
+                Console.WriteLine("IO Error - please reenter your name");
+            }catch(OutOfMemoryException){
+                Console.WriteLine("Memory Error - please reenter your name");
+            }catch(ArgumentOutOfRangeException){
+                Console.WriteLine("Could not take in player name - please reenter your name");
+            }catch(PlayerUnnamedException){
+                Console.WriteLine("Player name may not be blank");
+            }
+        }
+    }
+
+    public static void CongratulateOnWin(Player player)
+    {
+        Console.WriteLine($"Congratulations, {player.Name} - You Win!");
     }
 }

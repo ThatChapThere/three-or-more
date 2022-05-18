@@ -41,7 +41,7 @@ internal class Die : IRollable
             cumulativeValue += _weightings[i];
 
             if(cumulativeValue >= valueToReach){
-                _value = i + 1; // add one since lists are 0 indexed and dice are not
+                _value = i + 1; // add one since lists are 0 indexed and dice are not (except d10s in D&D)
                 return;
             }
         }
@@ -49,5 +49,6 @@ internal class Die : IRollable
         _value = _sides;
         // just in case a random number very near to 1 is generated
         // and a floating point error makes the above loop not set _value
+        // I have no idea if this is actually possible
     }
 }
