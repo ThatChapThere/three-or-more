@@ -1,0 +1,15 @@
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\bin\Debug\net6.0\ThreeOrMore.exe
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\bin\Debug\net6.0\ThreeOrMore.deps.json
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\bin\Debug\net6.0\ThreeOrMore.runtimeconfig.json
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\bin\Debug\net6.0\ThreeOrMore.dll
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\bin\Debug\net6.0\ThreeOrMore.pdb
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\ThreeOrMore.csproj.AssemblyReference.cache
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\ThreeOrMore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\ThreeOrMore.AssemblyInfoInputs.cache
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\ThreeOrMore.AssemblyInfo.cs
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\ThreeOrMore.csproj.CoreCompileInputs.cache
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\ThreeOrMore.dll
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\refint\ThreeOrMore.dll
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\ThreeOrMore.pdb
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\ThreeOrMore.genruntimeconfig.cache
+C:\Users\Tim\Documents\Code\repos\three-or-more\ThreeOrMore\obj\Debug\net6.0\ref\ThreeOrMore.dll
