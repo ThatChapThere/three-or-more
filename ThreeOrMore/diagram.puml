@@ -1,0 +1,16 @@
+@startuml
+
+interface IRollable
+IRollable : Roll()
+
+class Program
+class Player
+class Die
+class Dice
+class Game
+
+Dice o-- Die
+IRollable <|.. Die
+IRollable <|.. Dice
+
+@enduml

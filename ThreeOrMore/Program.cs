@@ -9,7 +9,10 @@ internal class Program
         var counts = Enumerable.Repeat(0, 7).ToList();
 
         for(int i = 0; i < 10000; i++)
-            counts[die.Roll()] ++;
+        {
+            die.Roll();
+            counts[die.Value] ++;
+        }
 
         for(int i = 1; i < counts.Count; i++)
             Console.WriteLine($" {i} appears {counts[i]} times");
