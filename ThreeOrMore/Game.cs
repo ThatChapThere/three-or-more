@@ -40,7 +40,7 @@ internal class Game
         // throw new AttemptToContinueFinishedGameException();
         foreach(Player player in _players)
         {
-            Console.ForegroundColor = (ConsoleColor) ((_players.IndexOf(player) % 15) + 1); // everything but black
+            UserInterface.setConsoleColorFromNumber(_players.IndexOf(player));
             UserInterface.DisplayScores(_players);
             UserInterface.NotifyTurn(player);
             UserInterface.RollDice();

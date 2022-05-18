@@ -2,6 +2,13 @@ namespace ThreeOrMore;
 
 class UserInterface
 {
+    public static bool MainMenu()
+    {
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write("Would you like to play a game of Three or More? ");
+        return getYesOrNo();
+    }
+
     public static int getRerollOption(List<int> rerollNumbers)
     {
         while(true)
@@ -34,7 +41,7 @@ class UserInterface
         Console.Write("The following values on the dice were rolled: ");
         foreach(int diceValue in diceValues)
         {
-            Console.ForegroundColor = (ConsoleColor) ((diceValue % 15) + 1); // everything but black
+            setConsoleColorFromNumber(diceValue);
             Console.Write($"{diceValue} ");
         }
         Console.WriteLine();
@@ -114,5 +121,17 @@ class UserInterface
     public static void CongratulateOnWin(Player player)
     {
         Console.WriteLine($"Congratulations, {player.Name} - You Win!");
+    }
+
+    public static void setConsoleColorFromNumber(int n)
+    {
+        Console.ForegroundColor = (ConsoleColor) ((n % 15) + 1); // restricts it to the range (1-15) - all except black
+    }
+
+    public static void Goodbye()
+    {
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("\n\nThanks for playing!");
+        Console.ReadKey();
     }
 }

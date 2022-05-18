@@ -19,29 +19,22 @@ internal class Dice : IRollable
             throw new WrongNumberOfWeightingsException("Not given enough weighting sets for the amount of dice");
         
         for(int i = 0; i < count; i++)
-            _dice.Add(new Die(sides[i], weightings[i]));
+            _dice.Add(new WeightedDie(sides[i], weightings[i]));
     }
 
     // Fair dice
     public Dice(int count, List<int> sides) 
     {
         for(int i = 0; i < count; i++)
-            _dice.Add(new Die(sides[i]));
+            _dice.Add(new FairDie(sides[i]));
     }
 
-    // Fair dice all with the same number of sides (calls fair dice constructor)
+    // Fair dice all with the same number of sides
     public Dice(int count, int sides) 
         : this(
             count,
             Enumerable.Repeat(sides, count).ToList()
         ){}
-    
-    // Fair 6 sided dice
-    public Dice(int count)
-    {
-        for(int i = 0; i < count; i++)
-            _dice.Add(new Die());
-    }
     
     public void Roll(List<bool> shouldRoll)
     {
