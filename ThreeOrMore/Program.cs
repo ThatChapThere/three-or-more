@@ -4,17 +4,13 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        var die = new Die(6);
-
-        var counts = Enumerable.Repeat(0, 7).ToList();
-
-        for(int i = 0; i < 10000; i++)
-        {
-            die.Roll();
-            counts[die.Value] ++;
-        }
-
-        for(int i = 1; i < counts.Count; i++)
-            Console.WriteLine($" {i} appears {counts[i]} times");
+        var game = new Game(
+            2,
+            new Dice(5),
+            new List<int>() { 0, 0, 3, 6, 12},
+            50
+        );
+        
+        game.AddBonusRollRule(2, 2);
     }
 }

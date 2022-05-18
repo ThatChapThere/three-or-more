@@ -1,4 +1,4 @@
-@startuml
+@startuml ThreeOrMore
 
 interface IRollable
 IRollable : Roll()

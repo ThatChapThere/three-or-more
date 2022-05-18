@@ -12,7 +12,7 @@ internal class Dice : IRollable
                 .ToList();
     }
 
-    // Default constructor
+    // Weighted dice
     public Dice(int count, List<int> sides, List<List<int>> weightings)
     {
         if(weightings.Count != count)
@@ -22,14 +22,14 @@ internal class Dice : IRollable
             _dice.Add(new Die(sides[i], weightings[i]));
     }
 
-    // Set of fair dice
+    // Fair dice
     public Dice(int count, List<int> sides) 
     {
         for(int i = 0; i < count; i++)
             _dice.Add(new Die(sides[i]));
     }
 
-    // Set of fair dice all with the same number of sides
+    // Fair dice all with the same number of sides (calls fair dice constructor)
     public Dice(int count, int sides) 
         : this(
             count,

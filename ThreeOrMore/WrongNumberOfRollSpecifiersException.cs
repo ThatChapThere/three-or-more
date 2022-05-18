@@ -1,3 +1,5 @@
+namespace ThreeOrMore;
+
 public class WrongNumberOfRollSpecifiersException : Exception
 {
     public WrongNumberOfRollSpecifiersException()

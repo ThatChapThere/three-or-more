@@ -1,3 +1,5 @@
+namespace ThreeOrMore;
+
 public class WrongNumberOfWeightingsException : Exception
 {
     public WrongNumberOfWeightingsException()

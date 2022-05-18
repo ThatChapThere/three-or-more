@@ -10,24 +10,23 @@ internal class Die : IRollable
     public int NumberOfSides{ get => _sides; }
     public int Value{ get => _value; }
     
-    // Default constructor
-    public Die(int sides, List<int> weightings)
+    // Default constructor (fair die)
+    public Die(int sides) 
+    {
+        _sides = sides;
+        _weightings = Enumerable.Repeat(1, sides).ToList();// create a list of length <sides> filled with ones
+    }
+
+    // Weighted die
+    public Die(int sides, List<int> weightings) : this(sides)
     {
         if(weightings.Count != sides) // Handle being given the wrong number of weightings
             throw new WrongNumberOfWeightingsException("Not given enough weightings for the amount of faces");
 
-        _sides = sides;
         _weightings = weightings.ToList(); // Calling ToList on a list creates a shallow copy, which is good enough for ints
     }
 
-    // Constructor for a fair die
-    public Die(int sides) 
-        : this(
-            sides,
-            Enumerable.Repeat(1, sides).ToList()// create a list of length [sides] filled with ones
-        ){}
-
-    // Default die has 6 sides
+    // 6 sided die
     public Die() : this(6) {} 
 
     // Roll the dice - set the value and also return it
