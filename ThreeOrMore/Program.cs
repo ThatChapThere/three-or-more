@@ -8,11 +8,25 @@ internal class Program
     public static List<int> dieCountScores = new List<int>() { 0, 0, 3, 6, 12};
     public static int winningScore = 50;
 
+    public static bool testing = false;
+
     static void Main(string[] args)
     {
+        if(testing)
+        {
+            Test.TestAll();
+            Console.ReadKey();
+            return;
+        }
+
         while(UserInterface.MainMenu())
         {
-            PlayGame();
+            try{
+                PlayGame();
+            }catch(AttemptToContinueFinishedGameException){
+                UserInterface.PrintGameFailedToEndProperlyError();
+                break;
+            }
         }
 
         UserInterface.Goodbye();
@@ -22,7 +36,7 @@ internal class Program
     {
         var game = new Game(
             players,
-            new Dice(numberOfDice, 6),
+            new Dice(numberOfDice, typeOfDice),
             dieCountScores,
             winningScore
         );

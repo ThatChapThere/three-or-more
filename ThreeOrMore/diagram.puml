@@ -1,16 +1,28 @@
 @startuml ThreeOrMore
 
 interface IRollable
-IRollable : Roll()
+
+
+class UserInterface
+class Test
+
 
 class Program
 class Player
-class Die
+abstract class Die
 class Dice
 class Game
+class FairDie
+class WeightedDie
 
-Dice o-- Die
-IRollable <|.. Die
+Die <|-- FairDie : inherits from
+Die <|-- WeightedDie 
+Dice *-- FairDie 
+Dice *-- WeightedDie  : used by
+IRollable <|.. Die : implements
 IRollable <|.. Dice
+Game *-- Dice
+Game *-- Player
+Program *-- Game
 
 @enduml

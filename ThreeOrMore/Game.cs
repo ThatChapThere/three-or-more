@@ -36,8 +36,8 @@ internal class Game
 
     public void PlayTurn()
     {
-        // if(Done)
-        // throw new AttemptToContinueFinishedGameException();
+        if(Done)
+            throw new AttemptToContinueFinishedGameException();
         foreach(Player player in _players)
         {
             UserInterface.setConsoleColorFromNumber(_players.IndexOf(player));
@@ -58,14 +58,7 @@ internal class Game
             _bonusRollsRemaining = _bonusRollsForEachMatchingSet[maxFrequency - 1];
             player.Score += _scoresForEachMatchingSet[maxFrequency - 1];
 
-            // Win condition
-            if(player.Score > _pointsToWin)
-            {
-                _done = true;
-                UserInterface.CongratulateOnWin(player);
-                UserInterface.DisplayScores(_players);
-                return;
-            }
+            if(checkWin(player)) return;
 
             while(_bonusRollsRemaining > 0)
             {
@@ -99,8 +92,13 @@ internal class Game
                 
                 // Roll dice along with appropriate UI calls
                 UserInterface.RollDice();
-                _dice.Roll(diceToReroll);
-                UserInterface.printDice(_dice.Values);
+    try{
+        _dice.Roll(diceToReroll);
+    }catch(WrongNumberOfRollSpecifiersException){
+        Console.WriteLine(
+            "Error - Dice failed to roll as wrong number of dice specified");
+    }
+    UserInterface.printDice(_dice.Values);
 
                 // After the reroll, we check whether we scored
                 // Add the player score and break if we did
@@ -111,10 +109,14 @@ internal class Game
                 // so we subtract 1
                 int score = _scoresForEachMatchingSet[maxFrequency - 1];
                 player.Score += score;
-                if(score != 0) break;
+                
+                if(checkWin(player)) return;
+
+                if(score != 0) break; // Don't reroll after a succesful reroll
 
                 _bonusRollsRemaining--;
             }
+        
         }
     }
 
@@ -140,6 +142,18 @@ internal class Game
             .ToDictionary(g => g.Key, g => g.Count());
             // Group keys are what the group object was grouped by, in this case value
             // The count is the size of these groups
+    }
+
+    private bool checkWin(Player player)
+    {
+        if(player.Score >= _pointsToWin)
+        {
+            _done = true;
+            UserInterface.DisplayScores(_players);
+            UserInterface.CongratulateOnWin(player);
+            return true;
+        }
+        return false;
     }
 
     private void setRerollOptionsFromFrequencies(Dictionary<int, int> frequencies, int maxFrequency)

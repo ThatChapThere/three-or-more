@@ -1,6 +1,6 @@
 namespace ThreeOrMore;
 
-internal class FairDie : Die
+internal class FairDie : Die, IRollable
 {
     public FairDie(int sides) : base(sides) {}
 

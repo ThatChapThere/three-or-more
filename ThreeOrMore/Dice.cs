@@ -30,11 +30,10 @@ internal class Dice : IRollable
     }
 
     // Fair dice all with the same number of sides
-    public Dice(int count, int sides) 
-        : this(
-            count,
-            Enumerable.Repeat(sides, count).ToList()
-        ){}
+    public Dice(int count, int sides): this(
+        count,
+        Enumerable.Repeat(sides, count).ToList()
+    ){}
     
     public void Roll(List<bool> shouldRoll)
     {

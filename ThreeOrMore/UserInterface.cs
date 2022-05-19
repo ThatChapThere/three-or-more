@@ -14,7 +14,7 @@ class UserInterface
         while(true)
         {
             try{
-                Console.Write("Please one of the following numbers to keep ( ");
+                Console.Write("Please choose one of the following numbers to keep ( ");
                 rerollNumbers.ForEach(n => Console.Write($"{n} "));
                 Console.Write("): ");
 
@@ -29,7 +29,7 @@ class UserInterface
             }catch(InvalidNumberException){
                 Console.WriteLine("That number cannot be kept");
             }catch{
-                Console.WriteLine("An error occured - please try again");
+                Console.WriteLine("An error occurred - please try again");
             }
         }
     }
@@ -53,19 +53,22 @@ class UserInterface
     {
         while(true)
         {
-            var userInput = Console.ReadLine()?? "";
-            
-            if(userInput.Length == 0) continue; // This prevents a index out of bounds error from occuring below
-            switch(userInput.ToUpper()[0])
-            {
-                case 'N':
-                    return false;
-                case 'Y':
-                    return true;
-                default:
-                    Console.WriteLine("Not a valid response - please try again");
-                    break;
-            }
+    try{
+        var userInput = Console.ReadLine()?? "";
+        
+        switch(userInput.ToUpper()[0])
+        {
+            case 'N':
+                return false;
+            case 'Y':
+                return true;
+            default:
+                Console.WriteLine("Not a valid response - please try again");
+                break;
+        }
+    }catch(IndexOutOfRangeException){ // If the user just presses enter
+        Console.WriteLine("Please enter an answer");
+    }
         }
     }
 
@@ -87,9 +90,13 @@ class UserInterface
         Console.WriteLine();
     }
 
+    // This also acts as the new screen function for each turn, so
     public static void DisplayScores(List<Player> players)
     {
-        Console.Write("\n\nThe scores are as follows: ");
+        Console.Write("Press any key to continue");
+        Console.ReadKey();
+        Console.Clear();
+        Console.Write("The scores are as follows: ");
         players.ForEach(
             p => Console.Write($"{p.Name}: {p.Score} ")
         );
@@ -126,6 +133,12 @@ class UserInterface
     public static void setConsoleColorFromNumber(int n)
     {
         Console.ForegroundColor = (ConsoleColor) ((n % 15) + 1); // restricts it to the range (1-15) - all except black
+    }
+
+    public static void PrintGameFailedToEndProperlyError()
+    {
+        Console.WriteLine("Error - The game continued after someone won!");
+        Console.WriteLine("Hopefully the right player got credit for the win!");
     }
 
     public static void Goodbye()
